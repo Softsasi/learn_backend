@@ -1,0 +1,30 @@
+```typescript
+
+/project-root
+  /prisma
+    schema.prisma
+  /src
+    /config
+      index.ts
+    /controllers
+      auth.controller.ts
+    /services
+      auth.service.ts
+      mail.service.ts
+    /repositories
+      user.repository.ts
+    /routes
+      auth.routes.ts
+    /validators
+      auth.validator.ts
+    /middlewares
+      error.middleware.ts
+      auth.middleware.ts
+    /utils
+      hash.util.ts
+    app.ts
+    index.ts
+  package.json
+  tsconfig.json
+  .env
+```
