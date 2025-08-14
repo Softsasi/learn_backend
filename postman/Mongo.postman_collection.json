@@ -1,0 +1,528 @@
+{
+	"info": {
+		"_postman_id": "cd8f7193-df9c-4e14-b459-d8137b7c4a9d",
+		"name": "Mongo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26596315",
+		"_collection_link": "https://cloudy-eclipse-51657.postman.co/workspace/Learn_MS~961772ed-d92b-4eb0-b874-df4382d5a39f/collection/26596315-cd8f7193-df9c-4e14-b459-d8137b7c4a9d?action=share&source=collection_link&creator=26596315"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "reset",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \n    \"email\": \"geo93@hotmail.com\",\n    \"password\": \"123456\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/auth/password-reset",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"auth",
+								"password-reset"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \n    \"email\": \"geo93@hotmail.com\",\n    \"password\": \"123456\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{app_url}}/auth/password-reset",
+									"host": [
+										"{{app_url}}"
+									],
+									"path": [
+										"auth",
+										"password-reset"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-L4xvc+jp/avJkeCZKkXIaqi7KoM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Aug 2025 10:51:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Password reset successful\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"kdp.tanzim0@gmail.com\",\n    \"password\": \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/auth/login",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"lEonArd.hOdkieWicz@yahoo.com\",\n    \"password\": \"1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{app_url}}/auth/login",
+									"host": [
+										"{{app_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "184"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b8-PEvyt74bP5W6gcxjglhNuFXt2QU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 10:21:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Login successful\",\n    \"accessToken\": \"token-688c8a5abb6f26479b9e3401-1754389300943\",\n    \"user\": {\n        \"id\": \"688c8a5abb6f26479b9e3401\",\n        \"email\": \"leonard.hodkiewicz@yahoo.com\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/user/688c8db2d2886ca1ee713f6d",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"user",
+								"688c8db2d2886ca1ee713f6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProfile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/user/688c8db2d2886ca1ee713f6d",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"user",
+								"688c8db2d2886ca1ee713f6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/user/all",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{app_url}}/user/all",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{$randomFirstName}}\", \n    \"email\":\"kdp.t.a.n.zim0@gmail.com\", \n    \"password\": \"12345\",\n    \"username\": \"{{$randomUserName}}\",\n    \"phoneNumber\": \"{{$randomPhoneNumber}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/auth/register",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "getPost",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{app_url}}/post/",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"post",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{app_url}}/post/689db93a06674dbdf2b3428a",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"post",
+								"689db93a06674dbdf2b3428a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePost",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"title\": \"{{$randomJobTitle}}\",\n   \"content\": \"{{$randomLoremText}}\",\n   \"description\": \"{{$randomJobDescriptor}}\",\n   \"category\": \"{{$randomBitcoin}}\",\n   \"author\": \"689a01ca9e74adfaa62c17fa\",\n   \"tags\": [\"1\",\"2\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/post/689db8a406674dbdf2b34288",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"post",
+								"689db8a406674dbdf2b34288"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"title\": \"{{$randomJobTitle}}\",\n   \"content\": \"{{$randomLoremText}}\",\n   \"description\": \"{{$randomJobDescriptor}}\",\n   \"category\": \"{{$randomBitcoin}}\",\n   \"author\": \"689a01ca9e74adfaa62c17fa\",\n   \"tags\": [\"1\",\"2\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/post/689dbd9c24104ac29afbc745",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"post",
+								"689dbd9c24104ac29afbc745"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create post",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"title\": \"{{$randomJobTitle}}\",\n   \"content\": \"{{$randomLoremText}}\",\n   \"description\": \"{{$randomJobDescriptor}}\",\n   \"category\": \"{{$randomBitcoin}}\",\n   \"author\": \"689a01ca9e74adfaa62c17fa\",\n   \"tags\": [\"1\",\"2\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/post/",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"post",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
