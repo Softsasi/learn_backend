@@ -2,6 +2,7 @@ import { getPostAllService, getPostById } from '@/service/post';
 import { Request, Response } from 'express';
 
 const postGetController = async (req: Request, res: Response) => {
+
   const result = await getPostAllService();
   res.send(result);
 };

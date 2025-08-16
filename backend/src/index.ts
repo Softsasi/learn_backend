@@ -1,9 +1,10 @@
 import chalk from 'chalk';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
-import morgan from 'morgan';
 import { connectMongo } from './db';
+import { loggerMiddleware } from './middlewares/logger.middleware';
 import adminRouter from './routes/adminRouter';
 import authRouter from './routes/authRouter';
 import { postRouter } from './routes/postRouter';
@@ -16,9 +17,9 @@ const port = process.env.PORT || 4003;
 const servicename = process.env.SERVICENAME || 'Auth-Service';
 
 app.use(express.json());
-
+app.use(cookieParser());
 app.use(cors());
-app.use(morgan('dev'));
+app.use(loggerMiddleware);
 
 // Register routes
 app.use('/admin', adminRouter);

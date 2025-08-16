@@ -5,6 +5,7 @@ import {
   postGetController,
   postUpdateController,
 } from '@/controllers/post';
+import { authMiddleware } from '@/middlewares/authMiddleware';
 
 import { Router } from 'express';
 
@@ -14,6 +15,6 @@ postRouter.get('/', postGetController); // public
 postRouter.get('/:id', postGetByIdController); // public
 
 // private routes
-postRouter.post('/', postCreateController);
-postRouter.patch('/:id', postUpdateController);
-postRouter.delete('/:id', postDeleteController);
+postRouter.post('/', authMiddleware, postCreateController);
+postRouter.patch('/:id', authMiddleware, postUpdateController);
+postRouter.delete('/:id', authMiddleware, postDeleteController);

@@ -18,6 +18,10 @@ export const loginController = async (req: Request, res: Response) => {
   });
 
   //send cookie with access token
+  res.cookie('accessToken', result.accessToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  });
 
   return res.status(200).json(result);
 };

@@ -3,6 +3,7 @@ import { postSchema } from '@/validators/post.validator';
 import { Request, Response } from 'express';
 
 export const postCreateController = async (req: Request, res: Response) => {
+
   const validation = postSchema.safeParse(req.body);
 
   if (!validation.success) {
@@ -14,8 +15,8 @@ export const postCreateController = async (req: Request, res: Response) => {
 
   const postData = validation.data;
 
-
   const result = await createPostService(postData);
+
   res.status(201).json({
     message: 'Post created successfully',
     post: result,
