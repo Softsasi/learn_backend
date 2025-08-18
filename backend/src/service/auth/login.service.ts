@@ -1,7 +1,7 @@
+import { User } from '@/models/user.model';
 import { AccountStatus } from '@/types/auth';
 import { generateToken, verifyPassword } from '@/utils/hash';
 import { findByEmail } from '../user';
-import { User } from '@/models/user.model';
 
 type LoginServiceParams = {
   email: string;
@@ -10,7 +10,11 @@ type LoginServiceParams = {
   userAgent?: string;
 };
 
-export const loginService = async ({ email, password, userAgent }: LoginServiceParams) => {
+export const loginService = async ({
+  email,
+  password,
+  userAgent,
+}: LoginServiceParams) => {
   // find user by email
   const user = await findByEmail(email);
   if (!user) {
@@ -65,7 +69,12 @@ export const loginService = async ({ email, password, userAgent }: LoginServiceP
     await User.updateOne({ _id: user._id }, { $addToSet: { userAgent } });
   }
 
-  const accessToken = `token-${generateToken(user)}`;
+  const accessToken = generateToken({
+    id: user._id,
+    email: user.email,
+    role: user.role,
+    userName: user.username,
+  });
 
   return {
     status: 200,

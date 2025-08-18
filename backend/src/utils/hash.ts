@@ -1,10 +1,11 @@
 import bcrypt from 'bcrypt';
-import crypto from 'crypto';
+
+import { addMinutes } from 'date-fns';
 
 const SALT_ROUNDS = process.env.SALT_ROUNDS
   ? parseInt(process.env.SALT_ROUNDS, 10)
   : 10;
-  
+
 export const hashPassword = (password: string) => {
   const hash = bcrypt.hashSync(password, SALT_ROUNDS);
   return hash;
@@ -21,11 +22,23 @@ export const verifyPassword = ({
 };
 
 export const generateToken = (data: object) => {
-  return (
-    Buffer.from(JSON.stringify(data)).toString('base64') +
-    '.' +
-    crypto.randomBytes(16).toString('hex') +
-    '.' +
-    Date.now().toString(16)
-  );
+  const payload = {
+    ...data,
+    exp: addMinutes(new Date(), 30).getTime(),
+  };
+
+  return Buffer.from(JSON.stringify(payload)).toString('base64');
+};
+
+export const verifyToken = (token: string) => {
+  const payload = Buffer.from(token, 'base64').toString('utf-8');
+  const { exp } = JSON.parse(payload);
+  console.log('Token payload:', payload);
+
+  if (Date.now() > exp) {
+    console.log('Token expired');
+    throw new Error('Token expired');
+  }
+
+  return JSON.parse(payload);
 };
