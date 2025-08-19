@@ -15,4 +15,5 @@ authRouter.post('/register', registerController);
 authRouter.post('/password-reset', passwordResetService);
 authRouter.get('/verify-email', verifyEmailController);
 
+
 export default authRouter;

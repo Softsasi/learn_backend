@@ -18,7 +18,16 @@ const servicename = process.env.SERVICENAME || 'Auth-Service';
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+const frontendOrigin = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+app.use(
+  cors({
+    origin: frontendOrigin, // specify frontend origin so cookies can be sent with credentials
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    optionsSuccessStatus: 200,
+  })
+);
 app.use(loggerMiddleware);
 
 // Register routes
