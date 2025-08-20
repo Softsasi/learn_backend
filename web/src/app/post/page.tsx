@@ -19,11 +19,14 @@ const PostPage = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post`);
   const posts = (await res.json()) as Post[];
 
+
   return (
     <div className="flex flex-col gap-4">
-      {posts.map((post) => (
-        <PostItem key={post._id} post={post} />
-      ))}
+      {posts && posts.length > 0 ? (
+        posts.map((post) => <PostItem key={post._id} post={post} />)
+      ) : (
+        <p>No posts available</p>
+      )}
     </div>
   );
 };

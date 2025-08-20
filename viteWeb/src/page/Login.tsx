@@ -1,19 +1,14 @@
-'use client';
-
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Link } from 'react-router';
 
-const LoginPage = () => {
-  const router = useRouter();
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const apiBase = process.env.NEXT_PUBLIC_API_URL ?? '';
+  const apiBase = 'http://localhost:8080';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +48,7 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <Image
+        <img
           src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
           alt="Your Company"
           className="mx-auto h-10 w-auto"
@@ -135,7 +130,7 @@ const LoginPage = () => {
         <p className="mt-10 text-center text-sm/6 text-gray-500">
           Not a user?
           <Link
-            href="/registration"
+            to="/registration"
             className="font-semibold text-indigo-600 hover:text-indigo-500"
           >
             Signup
@@ -146,4 +141,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
