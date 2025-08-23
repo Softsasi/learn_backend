@@ -77,8 +77,8 @@ const RegistrationForm = () => {
         return;
       }
 
-      toast.success('Registration successful. Redirecting to login...');
-      setTimeout(() => router.push('/login'), 2000);
+      toast.success('Registration successful. Redirecting to verify email...');
+      setTimeout(() => router.push('/verify-email'), 2000);
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
       else setError('Network error');
