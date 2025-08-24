@@ -1,30 +1,13 @@
-```typescript
+# Copilot Instructions
 
-/project-root
-  /prisma
-    schema.prisma
-  /src
-    /config
-      index.ts
-    /controllers
-      auth.controller.ts
-    /services
-      auth.service.ts
-      mail.service.ts
-    /repositories
-      user.repository.ts
-    /routes
-      auth.routes.ts
-    /validators
-      auth.validator.ts
-    /middlewares
-      error.middleware.ts
-      auth.middleware.ts
-    /utils
-      hash.util.ts
-    app.ts
-    index.ts
-  package.json
-  tsconfig.json
-  .env
-```
+> Use meaningful variable names and keep the code DRY (Don't Repeat Yourself).
+
+## Rules :
+
+- Write clean code
+- Makes sure a file code not more than 250-300 LOC.
+- Use react anti design patterns.
+- Avoid using inline styles and prefer CSS modules or styled-components.
+- Use proper tailwind CSS classes for styling.
+
+## Implementation Details

@@ -21,6 +21,7 @@ export const loginController = async (req: Request, res: Response) => {
   res.cookie('accessToken', result.accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   });
 
   return res.status(200).json(result);
