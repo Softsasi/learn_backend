@@ -5,22 +5,24 @@ import { Request, Response } from 'express';
 export const verifyEmailController = async (req: Request, res: Response) => {
   const { token, userId } = req.query;
   if (!token || !userId) {
-    return res.status(400).json({ error: 'Token and userId are required' });
+    return res
+      .status(400)
+      .json({ errorMsg: 'Token and userId are required', code: 400 });
   }
 
   // find user
   const user = await findByUserId(userId as string);
   if (!user) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ errorMsg: 'User not found', code: 404 });
   }
 
   // check token expiration
   if (user.emailVerificationExpires! < new Date()) {
-    return res.status(400).json({ error: 'Token expired' });
+    return res.status(400).json({ errorMsg: 'Token expired', code: 400 });
   }
 
   if (user.emailVerificationToken !== token) {
-    return res.status(400).json({ error: 'Invalid token' });
+    return res.status(400).json({ errorMsg: 'Invalid token', code: 400 });
   }
 
   // update status and emailVerified
@@ -34,6 +36,7 @@ export const verifyEmailController = async (req: Request, res: Response) => {
   await user.save();
 
   return res.status(200).json({
-    message: 'Email verified successfully',
+    successMsg: 'Email verified successfully',
+    code: 200,
   });
 };

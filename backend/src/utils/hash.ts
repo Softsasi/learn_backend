@@ -33,10 +33,8 @@ export const generateToken = (data: object) => {
 export const verifyToken = (token: string) => {
   const payload = Buffer.from(token, 'base64').toString('utf-8');
   const { exp } = JSON.parse(payload);
-  console.log('Token payload:', payload);
 
   if (Date.now() > exp) {
-    console.log('Token expired');
     throw new Error('Token expired');
   }
 

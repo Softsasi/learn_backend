@@ -1,4 +1,4 @@
-import { sendMail } from '@/lib';
+import { EmailService } from '@/lib';
 import { User } from '@/models/user.model';
 import { toLowerCase } from '@/utils';
 import { generateEmailVerification } from '@/utils/generateToken';
@@ -49,22 +49,13 @@ export const registerService = async ({
     });
 
     try {
-      await sendMail({
-        to: newEmail,
-        subject: 'Welcome to Our Service',
-        html: `<p>Hi ${name},</p><p>Thank you for registering with us!</p>
-    <p>Your account has been created successfully. You can now log in and start using our services.</p>
-    <p>If you have any questions or need assistance, feel free to reach out to our support team.</p>
-    <p>Here are your account details:</p>
-    <p><strong>Email:</strong> ${newEmail}</p>
-    <p><strong>Password:</strong> ${password}</p>
+      const verifyEmailUrl = `${process.env.FRONTEND_URL}/verify-email/status?token=${emailVerificationToken}&userId=${user.id}`;
 
-    <p
-    ><a href="${process.env.BACKEND_URL}/auth/verify-email?token=${emailVerificationToken}&userId=${user.id}">Verify Email</a></p>
-
-    <p>Please keep your password secure and do not share it with anyone.</p>
-        <p>Best regards,</p><p>Your Team</p>
-        `,
+      await EmailService.sendRegistrationEmail({
+        name,
+        email: newEmail,
+        password,
+        verifyEmailUrl,
       });
     } catch (error) {
       console.error('Error sending email:', error);
