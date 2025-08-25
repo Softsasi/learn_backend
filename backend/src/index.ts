@@ -21,8 +21,8 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   process.env.FRONTEND_URL, // optional from .env
-  "http://localhost:3000",  // React default
-  "http://localhost:5173",  // Vite default
+  'http://localhost:3000', // React default
+  'http://localhost:5173', // Vite default
 ].filter(Boolean); // remove undefined
 
 app.use(
@@ -36,10 +36,9 @@ app.use(
       return callback(new Error('CORS not allowed for this origin'));
     },
     credentials: true, // so cookies/headers work
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   })
 );
-
 
 app.use(loggerMiddleware);
 

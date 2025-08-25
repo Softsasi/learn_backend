@@ -1,3 +1,5 @@
+import { appConfig } from '@/config/appConfig';
+
 interface ApiOptions extends RequestInit {
   requireAuth?: boolean;
 }
@@ -21,8 +23,8 @@ export async function apiRequest<T = any>(
 ): Promise<ApiResponse<T>> {
   const { requireAuth = true, headers = {}, ...fetchOptions } = options;
 
-  // Build full URL
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  // Build full URL  appConfig.backend_Url;
+  const baseUrl = appConfig.backend_Url;
   const url = endpoint.startsWith('http') ? endpoint : `${baseUrl}${endpoint}`;
 
   // Prepare headers
@@ -30,7 +32,6 @@ export async function apiRequest<T = any>(
     'Content-Type': 'application/json',
     ...headers,
     credentials: 'include', // Ensure cookies are included
-    
   };
 
   // Include credentials to send cookies (including accessToken)

@@ -1,6 +1,7 @@
+import { appConfig } from '@/config/appConfig';
+import { getUserInfo } from '@/utils/getUserInfo';
 import Link from 'next/link';
 import PostItem from './_componnets/PostItem';
-
 export type Post = {
   _id: string;
   title: string;
@@ -17,9 +18,11 @@ export type Post = {
 };
 
 const PostPage = async () => {
+
+
   let posts: Post[] = [];
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post`, {
+    const res = await fetch(`${appConfig.backend_Url}/post`, {
       cache: 'no-store',
     });
     if (res.ok) {

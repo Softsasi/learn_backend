@@ -2,9 +2,6 @@ import { verifyToken } from '@/utils/hash';
 
 export const authMiddleware = (req, res, next) => {
   console.log('=== AUTH MIDDLEWARE ===');
-  console.log('Headers:', req.headers);
-  console.log('Cookies:', req.cookies);
-
   const accessToken = req.cookies.accessToken;
   console.log('Access Token:', accessToken);
 
