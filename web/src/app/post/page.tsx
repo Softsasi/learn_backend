@@ -1,7 +1,10 @@
+'use client';
+
 import { appConfig } from '@/config/appConfig';
-import { getUserInfo } from '@/utils/getUserInfo';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import PostItem from './_componnets/PostItem';
+
 export type Post = {
   _id: string;
   title: string;
@@ -17,20 +20,50 @@ export type Post = {
   __v: number;
 };
 
-const PostPage = async () => {
+const PostPage = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch(`${appConfig.backend_Url}/post`, {
+          cache: 'no-store',
+          credentials: 'include',
+        });
 
-  let posts: Post[] = [];
-  try {
-    const res = await fetch(`${appConfig.backend_Url}/post`, {
-      cache: 'no-store',
-    });
-    if (res.ok) {
-      posts = (await res.json()) as Post[];
-    }
-  } catch (err) {
-    // swallow - we'll show empty state
-    console.error('Failed to load posts', err);
+        if (res.ok) {
+          const data = (await res.json()) as Post[];
+          setPosts(data);
+        } else {
+          setError('Failed to load posts');
+        }
+      } catch (err) {
+        console.error('Failed to load posts', err);
+        setError('Failed to load posts');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-64">
+        <div className="text-gray-600">Loading posts...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-64">
+        <div className="text-red-600">{error}</div>
+      </div>
+    );
   }
 
   return (

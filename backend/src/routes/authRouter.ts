@@ -1,4 +1,5 @@
 import { loginController } from '@/controllers/loginController';
+import { refreshController } from '@/controllers/refreshController';
 import { registerController } from '@/controllers/regiterController';
 import { verifyEmailController } from '@/controllers/verifyEmailController';
 import { passwordResetService } from '@/service/auth';
@@ -14,6 +15,6 @@ authRouter.post('/login', loginController);
 authRouter.post('/register', registerController);
 authRouter.post('/password-reset', passwordResetService);
 authRouter.get('/verify-email', verifyEmailController);
-
+authRouter.get('/refresh', refreshController);
 
 export default authRouter;

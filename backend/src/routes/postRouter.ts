@@ -12,7 +12,7 @@ import { Router } from 'express';
 
 export const postRouter = Router();
 
-postRouter.get('/', postGetController); // public
+postRouter.get('/', authMiddleware, postGetController); // public
 postRouter.get('/:id', postGetByIdController); // public
 
 // private routes

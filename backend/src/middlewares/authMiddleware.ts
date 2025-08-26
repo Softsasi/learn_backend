@@ -1,7 +1,12 @@
-import { verifyToken } from '@/utils/hash';
+import { verifyJwtToken } from '@/utils/jwt-token';
 
 export const authMiddleware = (req, res, next) => {
   console.log('=== AUTH MIDDLEWARE ===');
+  console.log('📋 All cookies:', req.cookies);
+  console.log('📋 Raw cookie header:', req.headers.cookie);
+  console.log('🌐 Origin:', req.headers.origin);
+  console.log('🔗 Referer:', req.headers.referer);
+
   const accessToken = req.cookies.accessToken;
   console.log('Access Token:', accessToken);
 
@@ -13,7 +18,7 @@ export const authMiddleware = (req, res, next) => {
   }
 
   try {
-    const decoded = verifyToken(accessToken);
+    const decoded = verifyJwtToken(accessToken);
     if (!decoded) {
       throw new Error('Invalid token');
     }

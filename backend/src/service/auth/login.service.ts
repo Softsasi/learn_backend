@@ -1,6 +1,7 @@
 import { User } from '@/models/user.model';
 import { AccountStatus } from '@/types/auth';
-import { generateToken, verifyPassword } from '@/utils/hash';
+import { verifyPassword } from '@/utils/hash';
+import { createTokens } from '@/utils/jwt-token';
 import { findByEmail } from '../user';
 
 type LoginServiceParams = {
@@ -69,8 +70,9 @@ export const loginService = async ({
     await User.updateOne({ _id: user._id }, { $addToSet: { userAgent } });
   }
 
-  const accessToken = generateToken({
+  const { accessToken, refreshToken } = createTokens({
     id: user._id,
+    name: user.name,
     email: user.email,
     role: user.role,
     userName: user.username,
@@ -80,6 +82,8 @@ export const loginService = async ({
     status: 200,
     message: 'Login successful',
     accessToken,
+
+    refreshToken,
     user: {
       id: user._id,
       email: user.email,

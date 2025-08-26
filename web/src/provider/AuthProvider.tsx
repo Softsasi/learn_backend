@@ -3,11 +3,13 @@
 import React, { createContext, useContext, useState } from 'react';
 
 type User = {
-  id: string;
+  id: string | number;
   email: string;
   role: string;
   userName: string;
-  exp: number;
+  exp?: number;
+  iat?: number;
+  name: string;
 };
 
 const AuthContext = createContext<null | User>(null);
@@ -15,7 +17,7 @@ const AuthContext = createContext<null | User>(null);
 const AuthProvider = ({
   children,
   userInfo,
-}: React.PropsWithChildren<{ userInfo: User }>) => {
+}: React.PropsWithChildren<{ userInfo: User | null }>) => {
   const [user, setUser] = useState<null | User>(userInfo ?? null);
 
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
