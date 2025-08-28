@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuthInfo } from '@/provider/AuthProvider';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -23,6 +24,8 @@ const LoginForm = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const { user, setUser } = useAuthInfo();
 
   const onSubmit: SubmitHandler<inputData> = async (data) => {
     setError(null);
@@ -50,13 +53,19 @@ const LoginForm = () => {
         return;
       }
 
+      localStorage.setItem('accessToken', result.accessToken);
+      localStorage.setItem('refreshToken', result.refreshToken);
+      localStorage.setItem('user', JSON.stringify(result.user));
+
+      setUser(result.user);
+
       toast.success('Login successful!', {
         delay: 100,
         position: 'top-right',
       });
 
       setTimeout(() => {
-        router.push('/');
+        router.push('/dashboard');
       }, 2500);
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);

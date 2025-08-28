@@ -82,11 +82,12 @@ export const loginService = async ({
     status: 200,
     message: 'Login successful',
     accessToken,
-
     refreshToken,
     user: {
       id: user._id,
       email: user.email,
+      role: user.role,
+      userName: user.username,
     },
   };
 };

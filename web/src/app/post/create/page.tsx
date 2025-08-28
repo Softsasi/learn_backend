@@ -36,7 +36,7 @@ const PostCreatePage = () => {
   const [user, setUser] = useState<null | User>(null);
 
   // todo - fix bug in user info
-  const userInfo = useAuthInfo();
+  const { user: userInfo } = useAuthInfo();
 
   if (!userInfo) {
     return <p>Loading user...</p>;

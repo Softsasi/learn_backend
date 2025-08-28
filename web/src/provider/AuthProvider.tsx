@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type User = {
   id: string | number;
@@ -12,15 +12,30 @@ type User = {
   name: string;
 };
 
-const AuthContext = createContext<null | User>(null);
+const AuthContext = createContext<null | {
+  user: User | null;
+
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}>(null);
 
 const AuthProvider = ({
   children,
-  userInfo,
 }: React.PropsWithChildren<{ userInfo: User | null }>) => {
-  const [user, setUser] = useState<null | User>(userInfo ?? null);
+  const [user, setUser] = useState<User | null>(null);
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+  useEffect(() => {
+    const userInfoFromStorage = localStorage.getItem('user');
+    const parsedUserInfo = userInfoFromStorage
+      ? JSON.parse(userInfoFromStorage)
+      : null;
+    setUser(parsedUserInfo);
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

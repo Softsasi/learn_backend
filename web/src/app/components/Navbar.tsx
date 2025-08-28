@@ -1,7 +1,28 @@
-import Link from 'next/link';
+'use client';
 
+import { useAuthInfo } from '@/provider/AuthProvider';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+  const router = useRouter();
+  const { user, setUser } = useAuthInfo();
+
+  const handleLogOut = () => {
+    // Implement logout functionality, e.g., clear cookies, update context, redirect, etc.
+    console.log('Logging out...');
+    // destroy local storage access token, refresh token and user
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('user');
+
+    setUser(null);
+
+    setTimeout(() => {
+      router.push('/login');
+    }, 1500);
+  };
+
   return (
     <header className="bg-gray-900 shadow-md sticky top-0 z-50">
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -39,20 +60,33 @@ const Navbar = () => {
         </ul>
 
         {/* Auth Buttons */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Link
-            href="/login"
-            className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition"
-          >
-            Login
-          </Link>
-          <Link
-            href="/registration"
-            className="px-4 py-2 text-sm font-medium bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
-          >
-            Register
-          </Link>
-        </div>
+        {!user ? (
+          <div className="hidden md:flex items-center space-x-4">
+            <Link
+              href="/login"
+              className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition"
+            >
+              Login
+            </Link>
+            <Link
+              href="/registration"
+              className="px-4 py-2 text-sm font-medium bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
+            >
+              Register
+            </Link>
+          </div>
+        ) : (
+          <div className="hidden md:flex items-center space-x-4">
+            <span className="text-gray-300">Hello, {user.name}</span>
+            <Link
+              href="#"
+              className="px-4 py-2 text-sm font-medium bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+              onClick={handleLogOut}
+            >
+              Logout
+            </Link>
+          </div>
+        )}
 
         {/* Mobile Menu Placeholder */}
         {/* <button className="md:hidden text-gray-300 hover:text-white focus:outline-none">
