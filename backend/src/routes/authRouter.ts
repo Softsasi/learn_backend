@@ -14,6 +14,7 @@ authRouter.get('/', (_req, res) => {
 authRouter.post('/login', loginController);
 authRouter.post('/register', registerController);
 authRouter.post('/password-reset', passwordResetService);
+authRouter.post('/verify-password-reset', passwordResetService);
 authRouter.get('/verify-email', verifyEmailController);
 authRouter.get('/refresh', refreshController);
 
